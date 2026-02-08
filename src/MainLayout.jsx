@@ -1,11 +1,6 @@
 import './App.css'
-import Home from './pages/Home';
+import { Home, About, Techstack, Projects, Certificates, Contacts } from './pages';
 import Navbar from './components/Navbar';
-import About from './pages/About';
-import Techstack from './pages/Techstack';
-import Projects from './pages/Projects';
-import Certificates from './pages/Certificates';
-import Contacts from './pages/Contacts';
 
 
 
