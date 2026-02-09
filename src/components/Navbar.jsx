@@ -1,15 +1,29 @@
 import React from "react";
 import portfolio_logo from "../assets/portfolio_logo.png";
+import { createElement } from "react";
+import { useState } from "react";
 
 export default function Navbar() {
+  const [showMenu, setShowMenu] = useState(false); // state for showing/hiding the menu
+  const [activeMenu, setActiveMenu] = useState(0); // state for tracking which nav item is active
+
   return (
-    <div id ="navbar">
-      <a href='#navbar'>
-        <img src={portfolio_logo} alt="logo" className="fixed w-15 h-15" />
-      </a>
-      <nav className="bg-deep-teal-400 font-zalando-italic">
+    <div id="navbar">
+      {/* This is the clickable logo button. When you click it, it flips showMenu between true/false. true = menu visible, false = menu hidden */}
+      <div className="sm:cursor-pointer fixed w-15 h-15" onClick={() => setShowMenu(!showMenu)}>
+          <img src={portfolio_logo} alt="logo"/>
+      </div>
+
+      {/* This is the navbar itself. It is fixed on the right side of the screen. 
+      The important part is the conditional class: 
+      - If showMenu is true → translate-x-0 (nav is visible in place). 
+      - If showMenu is false → translate-x-full (nav is pushed off-screen to the right). 
+      The duration/ease classes make the sliding smooth. */}
+      <nav className={`fixed right-0 transform}
+        ${ showMenu ? "translate-x-0" : "translate-x-full"} duration-300 ease-in-out`}>
+
         <div>
-          <ul className="flex justify-center items-center space-x-10 py-4 text-white">
+          <ul className="flex justify-center items-center space-x-10 py-4 text-white font-zalando-italic">
             <li className="px-4 py-1 rounded-4xl">
               <a href="#about">About</a>
             </li>
@@ -27,31 +41,9 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
+
       </nav>
+
     </div>
   );
 }
-
-/*
-  <img src={portfolio_logo} alt="logo" className="w-auto h-auto" />
-   <nav className="w-full flex py-6 justify-between items-center navbar">
-   <img src={portfolio_logo} alt="logo" className="w-31 h-8" />
-  </nav>
- */
-
-/*
-  <nav>
-   <div className="bg-[#4f5661] text-white">
-    <div>
-     <ul className="flex justify-center items-center space-x-10 py-4">
-      <li className='bg-blue-950 px-4 py-1 rounded-4xl'><a href="#home">Home</a></li>
-      <li className='bg-blue-950 px-4 py-1 rounded-4xl'><a href="#about">About</a></li>
-      <li className='bg-blue-950 px-4 py-1 rounded-4xl'><a href="#techstack">Tech Stack</a></li>
-      <li className='bg-blue-950 px-4 py-1 rounded-4xl'><a href="#project">Project</a></li>
-      <li className='bg-blue-950 px-4 py-1 rounded-4xl'><a href="#certificates">Certificates</a></li>
-      <li className='bg-blue-950 px-4 py-1 rounded-4xl'><a href="#contacts">Contacts</a></li>               
-     </ul>
-    </div>
-   </div>
-  </nav>
-  */
