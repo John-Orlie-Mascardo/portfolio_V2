@@ -1,1 +1,238 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "Zalando Italic";
+  src: url("src/assets/ZalandoSansExpanded-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Zalando Sans";
+  src: url("src/assets/ZalandoSansExpanded-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Zalando Expanded Black";
+  src: url("src/assets/static/ZalandoSansExpanded-Black.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Zalando Expanded Black Italic";
+  src: url("src/assets/static/ZalandoSansExpanded-BlackItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Zalando Expanded Bold";
+  src: url("src/assets/static/ZalandoSansExpanded-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Zalando Expanded Bold Italic";
+  src: url("src/assets/static/ZalandoSansExpanded-BoldItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Zalando Expanded Extra Bold";
+  src: url("src/assets/static/ZalandoSansExpanded-ExtraBold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Zalando Expanded Extra Bold Italic";
+  src: url("src/assets/static/ZalandoSansExpanded-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme {
+  --font-zalando-italic: "Zalando Italic", sans-serif;
+  --font-zalando: "Zalando Sans", sans-serif;
+  --font-zalando-expanded-black: "Zalando Expanded Black", sans-serif;
+  --font-zalando-expanded-black-italic: "Zalando Expanded Black Italic", sans-serif;
+  --font-zalando-expanded-bold: "Zalando Expanded Bold", sans-serif;
+  --font-zalando-expanded-bold-italic: "Zalando Expanded Bold Italic", sans-serif;
+  --font-zalando-expanded-extra-bold: "Zalando Expanded Extra Bold", sans-serif;
+  --font-zalando-expanded-extra-bold-italic: "Zalando Expanded Extra Bold Italic", sans-serif;
+}
+
+@theme {
+  --color-deep-twilight-50: #e6e7fe;
+  --color-deep-twilight-100: #cecefd;
+  --color-deep-twilight-200: #9c9efc;
+  --color-deep-twilight-300: #6b6dfa;
+  --color-deep-twilight-400: #393cf9;
+  --color-deep-twilight-500: #080cf7;
+  --color-deep-twilight-600: #0609c6;
+  --color-deep-twilight-700: #050794;
+  --color-deep-twilight-800: #030563;
+  --color-deep-twilight-900: #020231;
+  --color-deep-twilight-950: #010223;
+
+  --color-french-blue-50: #e6f1ff;
+  --color-french-blue-100: #cde2fe;
+  --color-french-blue-200: #9bc5fd;
+  --color-french-blue-300: #68a9fd;
+  --color-french-blue-400: #368cfc;
+  --color-french-blue-500: #046ffb;
+  --color-french-blue-600: #0359c9;
+  --color-french-blue-700: #024397;
+  --color-french-blue-800: #022c64;
+  --color-french-blue-900: #011632;
+  --color-french-blue-950: #011023;
+
+  --color-bright-teal-blue-50: #e5f6ff;
+  --color-bright-teal-blue-100: #ccedff;
+  --color-bright-teal-blue-200: #99dbff;
+  --color-bright-teal-blue-300: #66c9ff;
+  --color-bright-teal-blue-400: #33b8ff;
+  --color-bright-teal-blue-500: #00a6ff;
+  --color-bright-teal-blue-600: #0085cc;
+  --color-bright-teal-blue-700: #006399;
+  --color-bright-teal-blue-800: #004266;
+  --color-bright-teal-blue-900: #002133;
+  --color-bright-teal-blue-950: #001724;
+
+  --color-blue-green-50: #e5f9ff;
+  --color-blue-green-100: #ccf2ff;
+  --color-blue-green-200: #99e6ff;
+  --color-blue-green-300: #66d9ff;
+  --color-blue-green-400: #33ccff;
+  --color-blue-green-500: #00bfff;
+  --color-blue-green-600: #0099cc;
+  --color-blue-green-700: #007399;
+  --color-blue-green-800: #004d66;
+  --color-blue-green-900: #002633;
+  --color-blue-green-950: #001b24;
+
+  --color-turquoise-surf-50: #e5fbff;
+  --color-turquoise-surf-100: #ccf6ff;
+  --color-turquoise-surf-200: #99eeff;
+  --color-turquoise-surf-300: #66e5ff;
+  --color-turquoise-surf-400: #33ddff;
+  --color-turquoise-surf-500: #00d4ff;
+  --color-turquoise-surf-600: #00aacc;
+  --color-turquoise-surf-700: #007f99;
+  --color-turquoise-surf-800: #005566;
+  --color-turquoise-surf-900: #002a33;
+  --color-turquoise-surf-950: #001e24;
+
+  --color-sky-aqua-50: #e9f9fc;
+  --color-sky-aqua-100: #d3f2f8;
+  --color-sky-aqua-200: #a6e5f2;
+  --color-sky-aqua-300: #7ad8eb;
+  --color-sky-aqua-400: #4ecbe4;
+  --color-sky-aqua-500: #21bede;
+  --color-sky-aqua-600: #1b98b1;
+  --color-sky-aqua-700: #147285;
+  --color-sky-aqua-800: #0d4c59;
+  --color-sky-aqua-900: #07262c;
+  --color-sky-aqua-950: #051b1f;
+
+  --color-frosted-blue-50: #e9f9fc;
+  --color-frosted-blue-100: #d2f3f9;
+  --color-frosted-blue-200: #a6e7f2;
+  --color-frosted-blue-300: #79dbec;
+  --color-frosted-blue-400: #4ccfe6;
+  --color-frosted-blue-500: #20c2df;
+  --color-frosted-blue-600: #199cb3;
+  --color-frosted-blue-700: #137586;
+  --color-frosted-blue-800: #0d4e59;
+  --color-frosted-blue-900: #06272d;
+  --color-frosted-blue-950: #041b1f;
+
+  --color-frosted-blue-50: #e9f9fc;
+  --color-frosted-blue-100: #d2f2f9;
+  --color-frosted-blue-200: #a5e6f3;
+  --color-frosted-blue-300: #78d9ed;
+  --color-frosted-blue-400: #4bcde7;
+  --color-frosted-blue-500: #1fc0e0;
+  --color-frosted-blue-600: #189ab4;
+  --color-frosted-blue-700: #127387;
+  --color-frosted-blue-800: #0c4d5a;
+  --color-frosted-blue-900: #06262d;
+  --color-frosted-blue-950: #041b1f;
+
+  --color-light-cyan-50: #e8f9fc;
+  --color-light-cyan-100: #d2f3f9;
+  --color-light-cyan-200: #a5e6f3;
+  --color-light-cyan-300: #78daed;
+  --color-light-cyan-400: #4acde8;
+  --color-light-cyan-500: #1dc1e2;
+  --color-light-cyan-600: #179ab5;
+  --color-light-cyan-700: #127487;
+  --color-light-cyan-800: #0c4d5a;
+  --color-light-cyan-900: #06272d;
+  --color-light-cyan-950: #041b20;
+
+  --color-alabaster-grey-50: #f1f4f4;
+  --color-alabaster-grey-100: #e2e9e9;
+  --color-alabaster-grey-200: #c6d2d2;
+  --color-alabaster-grey-300: #a9bcbc;
+  --color-alabaster-grey-400: #8da5a5;
+  --color-alabaster-grey-500: #708f8f;
+  --color-alabaster-grey-600: #5a7272;
+  --color-alabaster-grey-700: #435656;
+  --color-alabaster-grey-800: #2d3939;
+  --color-alabaster-grey-900: #161d1d;
+  --color-alabaster-grey-950: #101414;
+
+  --color-muted-teal-50: #eff6f4;
+  --color-muted-teal-100: #dfece9;
+  --color-muted-teal-200: #bfd9d3;
+  --color-muted-teal-300: #9fc6bc;
+  --color-muted-teal-400: #7eb4a6;
+  --color-muted-teal-500: #5ea190;
+  --color-muted-teal-600: #4b8173;
+  --color-muted-teal-700: #396056;
+  --color-muted-teal-800: #26403a;
+  --color-muted-teal-900: #13201d;
+  --color-muted-teal-950: #0d1614;
+
+  --color-mint-leaf-50: #e8fcf7;
+  --color-mint-leaf-100: #d2f9ef;
+  --color-mint-leaf-200: #a4f4e0;
+  --color-mint-leaf-300: #77eed0;
+  --color-mint-leaf-400: #49e9c1;
+  --color-mint-leaf-500: #1ce3b1;
+  --color-mint-leaf-600: #16b68e;
+  --color-mint-leaf-700: #11886a;
+  --color-mint-leaf-800: #0b5b47;
+  --color-mint-leaf-900: #062d23;
+  --color-mint-leaf-950: #042019;
+
+  --color-deep-teal-50: #f0f4f4;
+  --color-deep-teal-100: #e2e9e9;
+  --color-deep-teal-200: #c4d4d3;
+  --color-deep-teal-300: #a7bebd;
+  --color-deep-teal-400: #8aa8a7;
+  --color-deep-teal-500: #6c9391;
+  --color-deep-teal-600: #577574;
+  --color-deep-teal-700: #415857;
+  --color-deep-teal-800: #2b3b3a;
+  --color-deep-teal-900: #161d1d;
+  --color-deep-teal-950: #0f1514;
+
+  --color-evergreen-50: #e9fbed;
+  --color-evergreen-100: #d4f7da;
+  --color-evergreen-200: #a8f0b5;
+  --color-evergreen-300: #7de891;
+  --color-evergreen-400: #52e06c;
+  --color-evergreen-500: #26d947;
+  --color-evergreen-600: #1fad39;
+  --color-evergreen-700: #17822b;
+  --color-evergreen-800: #0f571c;
+  --color-evergreen-900: #082b0e;
+  --color-evergreen-950: #051e0a;
+}
