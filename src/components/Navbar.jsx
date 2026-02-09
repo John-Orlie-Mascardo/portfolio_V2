@@ -23,7 +23,7 @@ export default function Navbar() {
         ${ showMenu ? "translate-x-0" : "translate-x-full"} duration-300 ease-in-out`}>
 
         <div>
-          <ul className="flex justify-center items-center space-x-10 py-4 text-white font-zalando-italic">
+          <ul className="flex-col justify-center items-center space-y-5 py-4 text-white font-zalando-italic">
             <li className="px-4 py-1 rounded-4xl">
               <a href="#about">About</a>
             </li>
@@ -41,7 +41,6 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-
       </nav>
 
     </div>
