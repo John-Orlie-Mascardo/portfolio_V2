@@ -2,93 +2,119 @@ import portfolio_logo from "../assets/portfolio_logo.png";
 import { useState, useEffect } from "react";
 
 export default function Navbar() {
-  const [showMenu, setShowMenu] = useState(false); // state for showing/hiding the menu
-  const [activeMenu, setActiveMenu] = useState(null); // state for tracking which nav item is active
+  // showMenu controls whether the navbar is visible (true) or hidden (false)
+  const [showMenu, setShowMenu] = useState(false);
+  
+  // activeMenu stores which section is currently active (e.g., "home", "about")
+  const [activeMenu, setActiveMenu] = useState(null);
 
-  // This effect runs whenever you scroll
+  // useEffect runs code after the component loads and when certain things change
+  // The empty [] at the end means "run once when the component first appears"
   useEffect(() => {
+    // This function checks which section is visible on screen while scrolling
     const handleScroll = () => {
-      // Get all your sections by their IDs
-      const sections = [ "home","about", "techstack", "project", "certificates", "contacts"];
+      // List of all section IDs that match our page sections
+      const sections = ["home", "about", "techstack", "project", "certificates", "contacts"];
       
-      // Find which section is currently in view
+      // Loop through each section to check if it's visible
       for (let section of sections) {
+        // Try to find the HTML element with this ID
         const element = document.getElementById(section);
+        
         if (element) {
-          // getBoundingClientRect tells us where the element is on the screen
+          // getBoundingClientRect() tells us where the element is on screen
+          // rect.top = distance from top of screen
+          // rect.bottom = distance from bottom of screen
           const rect = element.getBoundingClientRect();
           
-          // If the section is near the top of the viewport (within 200px), it's "active"
+          // If the section is within 200px from the top, it's considered "active"
+          // This means when you scroll to a section, it gets highlighted
           if (rect.top <= 200 && rect.bottom >= 200) {
-            setActiveMenu(section);
-            break; // Stop checking once we found the active section
+            setActiveMenu(section); // Update which nav item should be highlighted
+            break; // Stop checking other sections once we found the active one
           }
         }
       }
     };
 
-    // Listen for scroll events
+    // Tell the browser: "Run handleScroll every time the user scrolls"
     window.addEventListener("scroll", handleScroll);
     
-    // Run once on page load to set initial active state
+    // Run handleScroll immediately when page loads to highlight the first section
     handleScroll();
 
-    // Cleanup: remove the listener when component unmounts
+    // Cleanup function: Remove the scroll listener when component is removed from page
+    // This prevents memory leaks and errors
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []); // Empty array means this runs once when component mounts
+  }, []);
 
   return (
     <div id="navbar">
-      {/* This is the clickable logo button. When you click it, it flips showMenu between true/false. true = menu visible, false = menu hidden */}
-      <div className="sm:cursor-pointer fixed w-15 h-15" onClick={() => setShowMenu(!showMenu)}>
-          <img src={portfolio_logo} alt="logo"/>
+      {/* Logo button: clicking it toggles the menu between visible/hidden */}
+      <div 
+        className="sm:cursor-pointer fixed w-15 h-15" 
+        onClick={() => setShowMenu(!showMenu)}
+      >
+        <img src={portfolio_logo} alt="logo"/>
       </div>
       
-      {/* This is the navbar itself. It is fixed on the right side of the screen. 
-      The important part is the conditional class: 
-      - If showMenu is true → translate-x-0 (nav is visible in place). 
-      - If showMenu is false → translate-x-full (nav is pushed off-screen to the right). 
-      The duration/ease classes make the sliding smooth. */}
-      <nav className={`fixed right-0 transform}
-        ${ showMenu ? "translate-x-0" : "translate-x-full"} duration-300 ease-in-out`}>
-
+      {/* The sliding navbar menu */}
+      {/* translate-x-0 = normal position, translate-x-full = pushed off screen to the right */}
+      {/* The showMenu state controls which position it's in */}
+      <nav 
+        className={`fixed right-0 transform ${showMenu ? "translate-x-0" : "translate-x-full"} duration-300 ease-in-out`}
+      >
         <div>
           <ul className="flex-col justify-center items-center space-y-5 py-4 text-deep-teal-900 font-zalando-italic">
-
-            <li onClick={() => setActiveMenu("home")} 
-              className={`px-4 py-1 rounded-4xl ${activeMenu === "home" ? "bg-teal-500 text-mint-leaf-100" : !activeMenu}`}>
+            {/* Each nav item: */}
+            {/* - onClick sets which item is active when clicked */}
+            {/* - The className checks if this item is active and applies highlight styles */}
+            {/* - href="#home" makes clicking scroll to that section */}
+            
+            <li 
+              onClick={() => setActiveMenu("home")} 
+              className={`px-4 py-1 rounded-4xl ${activeMenu === "home" ? "bg-teal-500 text-mint-leaf-100" : ""}`}
+            >
               <a href="#home">Home</a>
             </li>
 
-            <li onClick={() => setActiveMenu("about")} 
-              className={`px-4 py-1 rounded-4xl ${activeMenu === "about" ? "bg-teal-500 text-mint-leaf-100" : !activeMenu}`}>
+            <li 
+              onClick={() => setActiveMenu("about")} 
+              className={`px-4 py-1 rounded-4xl ${activeMenu === "about" ? "bg-teal-500 text-mint-leaf-100" : ""}`}
+            >
               <a href="#about">About</a>
             </li>
 
-            <li onClick={() => setActiveMenu("techstack")} 
-              className={`px-4 py-1 rounded-4xl ${activeMenu === "techstack" ? "bg-teal-500 text-mint-leaf-100" : ""}`}>
+            <li 
+              onClick={() => setActiveMenu("techstack")} 
+              className={`px-4 py-1 rounded-4xl ${activeMenu === "techstack" ? "bg-teal-500 text-mint-leaf-100" : ""}`}
+            >
               <a href="#techstack">Tech Stack</a>
             </li>
 
-            <li onClick={() => setActiveMenu("project")} 
-              className={`px-4 py-1 rounded-4xl ${activeMenu === "project" ? "bg-teal-500 text-mint-leaf-100" : ""}`}>
+            <li 
+              onClick={() => setActiveMenu("project")} 
+              className={`px-4 py-1 rounded-4xl ${activeMenu === "project" ? "bg-teal-500 text-mint-leaf-100" : ""}`}
+            >
               <a href="#project">Project</a>
             </li>
 
-            <li onClick={() => setActiveMenu("certificates")} 
-              className={`px-4 py-1 rounded-4xl ${activeMenu === "certificates" ? "bg-teal-500 text-mint-leaf-100" : ""}`}>
+            <li 
+              onClick={() => setActiveMenu("certificates")} 
+              className={`px-4 py-1 rounded-4xl ${activeMenu === "certificates" ? "bg-teal-500 text-mint-leaf-100" : ""}`}
+            >
               <a href="#certificates">Certificates</a>
             </li>
 
-            <li onClick={() => setActiveMenu("contacts")} 
-              className={`px-4 py-1 rounded-4xl ${activeMenu === "contacts" ? "bg-teal-500 text-mint-leaf-100" : ""}`}>
+            <li 
+              onClick={() => setActiveMenu("contacts")} 
+              className={`px-4 py-1 rounded-4xl ${activeMenu === "contacts" ? "bg-teal-500 text-mint-leaf-100" : ""}`}
+            >
               <a href="#contacts">Contact Me</a>
             </li>
-
           </ul>
         </div>
       </nav>
-
     </div>
   );
 }
