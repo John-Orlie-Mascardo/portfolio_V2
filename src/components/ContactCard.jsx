@@ -4,7 +4,7 @@ export default function ContactCard({ icon, text, link }) {
   return (
     <section className="bg-deep-teal-700">
       <div>
-        <h2 className="text-2xl md:text-3xl font-semibold text-center pt-10 text-white">Contacts</h2>
+        <h2 className="text-2xl md:text-3xl font-semibold text-center pt-10 text-white">Contact Me</h2>
       </div>
     </section>
   );
