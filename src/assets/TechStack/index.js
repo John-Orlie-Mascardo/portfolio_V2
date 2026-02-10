@@ -16,6 +16,7 @@ import Github from "./github.png";
 import Render from "./render.png";
 import Vercel from "./vercel_logo.png";
 import Vite from "./Vitejs-logo.svg.png";
+import Bruno from "./bruno.png";
 
 
 
@@ -25,4 +26,4 @@ export { Html, Css, Javascript, Flutter, ReactLogo };
 
 export { Vscode, Intellij, AndroidStudio };
 
-export { Express, Nodejs, MongoDB, Git, Github, Render, Vercel, Vite };
+export { Express, Nodejs, MongoDB, Git, Github, Render, Vercel, Vite, Bruno };
