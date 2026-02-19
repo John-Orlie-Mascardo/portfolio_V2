@@ -50,11 +50,8 @@ export default function Navbar() {
           <img 
             src={portfolio_logo} 
             alt="logo" 
-            className="w-10 h-10 rounded-full object-cover border-2 border-mint-leaf-400"
+            className="w-10 h-10 rounded-full object-cover border-2 border-mint-leaf-400 bg-alabaster-grey-50"
           />
-          <span className="text-xl font-zalando-expanded-bold text-white hidden sm:block">
-            JohnMascardo
-          </span>
         </div>
 
         {/* Desktop Navigation */}

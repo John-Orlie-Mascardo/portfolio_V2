@@ -59,7 +59,7 @@ export default function AboutComponents() {
             <div className="space-y-6">
               {[
                 { number: '3', label: 'Years Studying' },
-                { number: '50+', label: 'Projects' },
+                { number: '1', label: 'Projects' },
                 { number: '10+', label: 'Technologies' },
                 { number: '24/7', label: 'Learning' }
               ].map((stat, index) => (

@@ -1,51 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
+import ciscoPacketTracerImg from "../assets/Certificates/Getting started cisco packet tracer.pdf.png";
+import htmlCssImg from "../assets/Certificates/HTML and CSS - expiration_ 2_4_2031.pdf.png";
+import introIoTImg from "../assets/Certificates/Introduction to IoT.pdf.png";
+import powerpointImg from "../assets/Certificates/PowerPoint 2019 Associate.pdf.png";
+import wordImg from "../assets/Certificates/Word 2019 Associate.pdf.png";
 
 export default function Certificatecard() {
-  // Sample certificates - replace with your actual certificates
+  // Actual certificates from src/assets/Certificates
   const certificates = [
     {
       id: 1,
-      title: "Full Stack Web Development",
-      issuer: "Udemy",
-      date: "2023",
-      image: "https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=300&fit=crop"
+      title: "Getting Started with Cisco Packet Tracer",
+      issuer: "Cisco",
+      date: "2026",
+      image: ciscoPacketTracerImg
     },
     {
       id: 2,
-      title: "React Advanced Concepts",
-      issuer: "Coursera",
-      date: "2023",
-      image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop"
+      title: "HTML and CSS",
+      issuer: "Microsoft",
+      date: "2026",
+      image: htmlCssImg
     },
     {
       id: 3,
-      title: "JavaScript Masterclass",
-      issuer: "Udemy",
-      date: "2022",
-      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop"
+      title: "Introduction to IoT",
+      issuer: "Cisco",
+      date: "2026",
+      image: introIoTImg
     },
     {
       id: 4,
-      title: "Node.js and Express",
-      issuer: "FreeCodeCamp",
-      date: "2022",
-      image: "https://images.unsplash.com/photo-1555099962-4199c345e5dd?w=400&h=300&fit=crop"
+      title: "PowerPoint 2019 Associate",
+      issuer: "Microsoft",
+      date: "2024",
+      image: powerpointImg
     },
     {
       id: 5,
-      title: "Database Design",
-      issuer: "LinkedIn Learning",
-      date: "2021",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop"
-    },
-    {
-      id: 6,
-      title: "Git and GitHub",
-      issuer: "Coursera",
-      date: "2021",
-      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=300&fit=crop"
+      title: "Word 2019 Associate",
+      issuer: "Microsoft",
+      date: "2024",
+      image: wordImg
     }
   ];
+
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
+
+  const openModal = (certificate) => {
+    setSelectedCertificate(certificate);
+  };
+
+  const closeModal = () => {
+    setSelectedCertificate(null);
+  };
 
   return (
     <section id="certificates" className="py-24 px-4 bg-linear-to-br from-deep-teal-900 via-deep-teal-800 to-deep-teal-950">
@@ -78,18 +86,18 @@ export default function Certificatecard() {
                   alt={certificate.title} 
                   className="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-deep-teal-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end">
+                <div className="absolute inset-0 bg-linear-to-t from-deep-teal-900/80 to-transparent opacity-100 transition-all duration-300 flex items-end">
                   <div className="p-4">
-                    <a 
-                      href="#" 
+                    <button 
                       className="flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-lg text-deep-teal-900 hover:bg-white transition-all duration-300 text-sm"
+                      onClick={() => openModal(certificate)}
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                       </svg>
                       View Certificate
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -113,19 +121,63 @@ export default function Certificatecard() {
                     <span className="text-alabaster-grey-400 text-sm">{certificate.date}</span>
                   </div>
                 </div>
-                <a 
-                  href="#" 
+                <button 
                   className="inline-flex items-center gap-2 text-mint-leaf-400 hover:text-bright-teal-blue-400 transition-colors duration-300 text-sm font-medium"
+                  onClick={() => openModal(certificate)}
                 >
                   Verify Certificate
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </a>
+                </button>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Certificate Modal */}
+        {selectedCertificate && (
+          <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="relative max-w-4xl w-full max-h-[90vh]">
+              <button 
+                onClick={closeModal}
+                className="absolute -top-12 right-0 text-alabaster-grey-400 hover:text-white transition-colors duration-300"
+              >
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <div className="bg-white rounded-lg overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto">
+                <div className="p-6">
+                  <h3 className="text-2xl font-zalando-expanded-bold text-deep-teal-900 mb-4">
+                    {selectedCertificate.title}
+                  </h3>
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="flex items-center gap-2">
+                      <svg className="w-5 h-5 text-alabaster-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                      </svg>
+                      <span className="text-alabaster-grey-400 text-sm">{selectedCertificate.issuer}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <svg className="w-5 h-5 text-alabaster-grey-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <span className="text-alabaster-grey-400 text-sm">{selectedCertificate.date}</span>
+                    </div>
+                  </div>
+                  <div className="mb-6">
+                    <img 
+                      src={selectedCertificate.image} 
+                      alt={selectedCertificate.title} 
+                      className="w-full h-auto rounded-lg shadow-md"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* View All Certificates Button */}
         <div className="text-center mt-16">
