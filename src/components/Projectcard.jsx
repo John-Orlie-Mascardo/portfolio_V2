@@ -142,8 +142,15 @@ export default function Projectcard() {
         {/* View All Projects Button */}
         <div className="text-center mt-16">
           <a 
-            href="#" 
+            href="#project" 
             className="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-mint-leaf-500 to-bright-teal-blue-500 text-white rounded-full font-zalando-expanded-bold hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+            onClick={(e) => {
+              e.preventDefault();
+              const element = document.getElementById('project');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
           >
             View All Projects
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
